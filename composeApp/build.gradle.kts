@@ -38,6 +38,7 @@ kotlin {
             implementation(libs.auth)
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            api(libs.androidx.startup)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -49,6 +50,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
+            implementation(libs.androidx.data.store.core)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

@@ -33,8 +33,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.devpulse.moodify.AppUiEvent
+import `in`.devpulse.moodify.coreComponent
 import `in`.devpulse.moodify.repository.getSpotifyClient
 import `in`.devpulse.moodify.res.colorAccent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import moodify.composeapp.generated.resources.Res
 import moodify.composeapp.generated.resources.bg_login
 import moodify.composeapp.generated.resources.ic_waveform
@@ -104,7 +108,12 @@ fun Login(
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorAccent),
                 onClick = {
                     getSpotifyClient().authenticateSpotify { token ->
-                        onLoginSuccess?.invoke(token ?: "")
+                        token?.let {
+                            CoroutineScope(Dispatchers.Main).launch {
+                                coreComponent.appPreferences.setLoggedIn(true)
+                                onLoginSuccess?.invoke(token)
+                            }
+                        }
                     }
                 },
                 modifier = Modifier.align(Alignment.End)

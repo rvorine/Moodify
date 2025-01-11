@@ -18,6 +18,8 @@ kotlin = "2.1.0"
 kotlinx-coroutines = "1.9.0"
 lifecycleViewModel = "2.8.7"
 navigationCompose = "2.8.0-alpha10"
+androidx-data-store = "1.1.1"
+androidx-startup = "1.1.1"
 
 [libraries]
 auth = { module = "com.spotify.android:auth", version.ref = "auth" }
@@ -36,6 +38,10 @@ androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewModel" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-data-store-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-data-store" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidx-startup" }
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

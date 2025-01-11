@@ -19,8 +19,4 @@ object ActivityContext {
         if (::context.isInitialized.not()) throw Exception("Application context isn't initialized")
         return context
     }
-
-    fun registerActivity() {
-
-    }
 }
