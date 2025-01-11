@@ -34,6 +34,8 @@ kotlin {
         val desktopMain by getting
         
         androidMain.dependencies {
+            implementation(files("libs/spotify-app-remote-0.8.0.aar"))
+            implementation(libs.auth)
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
@@ -46,6 +48,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.navigation.compose)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -57,13 +60,18 @@ kotlin {
 android {
     namespace = "in.devpulse.moodify"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-
+    buildFeatures.buildConfig = true
     defaultConfig {
         applicationId = "in.devpulse.moodify"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+        buildConfigField(
+            "String",
+            "SPOTIFY_CLIENT_KEY",
+            "\"${System.getenv("SPOTIFY_CLIENT_ID")}\""
+        )
     }
     packaging {
         resources {
